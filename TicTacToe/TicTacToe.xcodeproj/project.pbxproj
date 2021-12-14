@@ -13,6 +13,8 @@
 		04AD09BA2769347A00315521 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04AD09B82769347A00315521 /* Main.storyboard */; };
 		04AD09BC2769347A00315521 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04AD09BB2769347A00315521 /* Assets.xcassets */; };
 		04AD09BF2769347A00315521 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04AD09BD2769347A00315521 /* LaunchScreen.storyboard */; };
+		04AD09C827693EE500315521 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04AD09C727693EE500315521 /* Montserrat-Bold.ttf */; };
+		04AD09CA27693F8E00315521 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04AD09C927693F8E00315521 /* Montserrat-Light.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		04AD09BB2769347A00315521 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04AD09BE2769347A00315521 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04AD09C02769347A00315521 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04AD09C727693EE500315521 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		04AD09C927693F8E00315521 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +67,18 @@
 				04AD09BB2769347A00315521 /* Assets.xcassets */,
 				04AD09BD2769347A00315521 /* LaunchScreen.storyboard */,
 				04AD09C02769347A00315521 /* Info.plist */,
+				04AD09C627693ED300315521 /* fonts */,
 			);
 			path = TicTacToe;
+			sourceTree = "<group>";
+		};
+		04AD09C627693ED300315521 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				04AD09C727693EE500315521 /* Montserrat-Bold.ttf */,
+				04AD09C927693F8E00315521 /* Montserrat-Light.ttf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +139,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04AD09CA27693F8E00315521 /* Montserrat-Light.ttf in Resources */,
+				04AD09C827693EE500315521 /* Montserrat-Bold.ttf in Resources */,
 				04AD09BF2769347A00315521 /* LaunchScreen.storyboard in Resources */,
 				04AD09BC2769347A00315521 /* Assets.xcassets in Resources */,
 				04AD09BA2769347A00315521 /* Main.storyboard in Resources */,
@@ -296,6 +312,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -326,6 +343,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
