@@ -34,74 +34,26 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick game mode." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sur-vn-Yoz">
-                                <rect key="frame" x="98.5" y="174" width="217.5" height="30.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick X or O" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sur-vn-Yoz">
+                                <rect key="frame" x="140" y="174" width="134" height="31"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iP1-g0-Ih1">
-                                <rect key="frame" x="82" y="512" width="250" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="2uB-da-sVE"/>
-                                    <constraint firstAttribute="height" constant="80" id="CxK-FF-Io6"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="SINGLEPLAYER">
-                                            <attributes>
-                                                <color key="NSColor" red="0.027450980392156862" green="0.78823529411764703" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="24" name="Montserrat-Bold"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </buttonConfiguration>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JWp-Sb-kby">
-                                <rect key="frame" x="82" y="612" width="250" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="My3-Gn-53s"/>
-                                    <constraint firstAttribute="height" constant="80" id="Za4-kp-mhl"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="MULTIPLAYER">
-                                            <attributes>
-                                                <color key="NSColor" red="0.027450980392156862" green="0.78823529411764703" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="24" name="Montserrat-Bold"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </buttonConfiguration>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottomMargin" secondItem="iP1-g0-Ih1" secondAttribute="bottom" constant="270" id="1Sb-lV-I6V"/>
-                            <constraint firstItem="JWp-Sb-kby" firstAttribute="top" secondItem="iP1-g0-Ih1" secondAttribute="bottom" constant="20" id="7bz-Yf-sJi"/>
                             <constraint firstItem="1ia-0o-GSp" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="100" id="82R-ra-Enm"/>
-                            <constraint firstItem="iP1-g0-Ih1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="C32-td-DWW"/>
                             <constraint firstItem="L4W-YX-NHg" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="NdQ-zQ-qgv"/>
                             <constraint firstItem="Sur-vn-Yoz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NyV-M4-RRc"/>
                             <constraint firstItem="L4W-YX-NHg" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="Vjk-7O-8FB"/>
-                            <constraint firstItem="JWp-Sb-kby" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bPu-XM-jL5"/>
                             <constraint firstItem="1ia-0o-GSp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kXN-EW-4NA"/>
                             <constraint firstItem="L4W-YX-NHg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lbN-0f-x0P"/>
                             <constraint firstItem="Sur-vn-Yoz" firstAttribute="top" secondItem="1ia-0o-GSp" secondAttribute="bottom" constant="20" id="mHy-qE-gZ0"/>
                             <constraint firstItem="L4W-YX-NHg" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="mfW-VE-fMJ"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="multiplayerButton" destination="JWp-Sb-kby" id="vW2-Ix-1y0"/>
-                        <outlet property="singleplayerButton" destination="iP1-g0-Ih1" id="EOA-Gx-2PD"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
