@@ -24,6 +24,9 @@ class GameViewController: UIViewController {
     
     
     var playerType: String?
+    var enemyType: String?
+    var tilesNumber = 0
+    
     var occupiedTiles = [
         1: "",
         2: "",
@@ -41,6 +44,9 @@ class GameViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         configureScreen()
+        
+        // Set type for enemy
+        setEnemyType()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,6 +57,15 @@ class GameViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    func setEnemyType() {
+        if self.playerType! == "X" {
+            enemyType = "O"
+        } else {
+            enemyType = "X"
+        }
+        print("Set enemy type for: \(enemyType!)")
     }
     
     func configureScreen() {
@@ -88,7 +103,7 @@ class GameViewController: UIViewController {
     
     // MARK: - BUTTON PRESSED
     
-    func TileIsFree(tileId: Int) -> Bool{
+    func tileIsFree(tileId: Int) -> Bool{
         if occupiedTiles[tileId] == "" {
             occupiedTiles[tileId] = self.playerType!
             return true
@@ -98,58 +113,208 @@ class GameViewController: UIViewController {
         }
     }
     
+    func enemyMove() {
+        var stilChooseNumber = true
+        if tilesNumber < 9 {
+            while stilChooseNumber {
+                let randNum = Int.random(in: 1...9)
+                if occupiedTiles[randNum] == "" {
+                    occupiedTiles[randNum] = self.enemyType!
+                    
+                    switch randNum {
+                    case 1:
+                        buttonA1.setImage(UIImage(named: "\(self.enemyType!)_SPACE.png"), for: .normal)
+                    case 2:
+                        buttonA2.setImage(UIImage(named: "\(self.enemyType!)_SPACE.png"), for: .normal)
+                    case 3:
+                        buttonA3.setImage(UIImage(named: "\(self.enemyType!)_SPACE.png"), for: .normal)
+                    case 4:
+                        buttonB1.setImage(UIImage(named: "\(self.enemyType!)_SPACE.png"), for: .normal)
+                    case 5:
+                        buttonB2.setImage(UIImage(named: "\(self.enemyType!)_SPACE.png"), for: .normal)
+                    case 6:
+                        buttonB3.setImage(UIImage(named: "\(self.enemyType!)_SPACE.png"), for: .normal)
+                    case 7:
+                        buttonC1.setImage(UIImage(named: "\(self.enemyType!)_SPACE.png"), for: .normal)
+                    case 8:
+                        buttonC2.setImage(UIImage(named: "\(self.enemyType!)_SPACE.png"), for: .normal)
+                    case 9:
+                        buttonC3.setImage(UIImage(named: "\(self.enemyType!)_SPACE.png"), for: .normal)
+                    default:
+                        print("Error! Wrong number")
+                    }
+                    stilChooseNumber = false
+                    tilesNumber += 1
+                    if gameOver(winserType: self.enemyType!) {
+                        print("CPU WON!")
+                    }
+                }
+            }
+        }
+        print("number of \(tilesNumber), bool: \(stilChooseNumber)")
+
+    }
+    
+    func gameOver(winserType: String) -> Bool{
+        if checkForWinInRows(winerType: winserType) {
+            return true
+        } else if checkForWinInColumns(winerType: winserType) {
+            return true
+        } else if checkForWinInDiagonals(winerType: winserType) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func checkForWinInRows(winerType: String) -> Bool{
+        if occupiedTiles[1] == winerType && occupiedTiles[2] == winerType && occupiedTiles[3] == winerType {
+            return true
+        } else if occupiedTiles[4] == winerType && occupiedTiles[5] == winerType && occupiedTiles[6] == winerType {
+            return true
+        } else if occupiedTiles[7] == winerType && occupiedTiles[8] == winerType && occupiedTiles[9] == winerType {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func checkForWinInColumns(winerType: String) -> Bool{
+        if occupiedTiles[1] == winerType && occupiedTiles[4] == winerType && occupiedTiles[7] == winerType {
+            return true
+        } else if occupiedTiles[2] == winerType && occupiedTiles[5] == winerType && occupiedTiles[8] == winerType {
+            return true
+        } else if occupiedTiles[3] == winerType && occupiedTiles[6] == winerType && occupiedTiles[9] == winerType {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func checkForWinInDiagonals(winerType: String) -> Bool{
+        if occupiedTiles[1] == winerType && occupiedTiles[5] == winerType && occupiedTiles[9] == winerType {
+            return true
+        } else if occupiedTiles[3] == winerType && occupiedTiles[5] == winerType && occupiedTiles[7] == winerType {
+            return true
+        } else {
+            return false
+        }
+    }
     
     @IBAction func buttonA1Pressed(_ sender: Any) {
-        if TileIsFree(tileId: 1) {
+        if tileIsFree(tileId: 1) {
             buttonA1.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
+            tilesNumber += 1
+        }
+        
+        if gameOver(winserType: self.playerType!) {
+            print("PLAYER WON!")
+        } else {
+            enemyMove()
         }
         
     }
     
     @IBAction func buttonA2Pressed(_ sender: Any) {
-        if TileIsFree(tileId: 2) {
+        if tileIsFree(tileId: 2) {
             buttonA2.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
+            tilesNumber += 1
+        }
+        
+        if gameOver(winserType: self.playerType!) {
+            print("PLAYER WON!")
+        } else {
+            enemyMove()
         }
     }
     
     @IBAction func buttonA3Pressed(_ sender: Any) {
-        if TileIsFree(tileId: 3) {
+        if tileIsFree(tileId: 3) {
             buttonA3.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
+            tilesNumber += 1
+        }
+        
+        if gameOver(winserType: self.playerType!) {
+            print("PLAYER WON!")
+        } else {
+            enemyMove()
         }
     }
     
     @IBAction func buttonB1Pressed(_ sender: Any) {
-        if TileIsFree(tileId: 4) {
+        if tileIsFree(tileId: 4) {
             buttonB1.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
+            tilesNumber += 1
+        }
+        
+        if gameOver(winserType: self.playerType!) {
+            print("PLAYER WON!")
+        } else {
+            enemyMove()
         }
     }
     
     @IBAction func buttonB2Pressed(_ sender: Any) {
-        if TileIsFree(tileId: 5) {
+        if tileIsFree(tileId: 5) {
             buttonB2.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
+            tilesNumber += 1
+        }
+        
+        if gameOver(winserType: self.playerType!) {
+            print("PLAYER WON!")
+        } else {
+            enemyMove()
         }
     }
     
     @IBAction func buttonB3Pressed(_ sender: Any) {
-        if TileIsFree(tileId: 6) {
+        if tileIsFree(tileId: 6) {
             buttonB3.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
+            tilesNumber += 1
+        }
+        
+        if gameOver(winserType: self.playerType!) {
+            print("PLAYER WON!")
+        } else {
+            enemyMove()
         }
     }
     
     @IBAction func buttonC1Pressed(_ sender: Any) {
-        if TileIsFree(tileId: 7) {
+        if tileIsFree(tileId: 7) {
             buttonC1.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
+            tilesNumber += 1
+        }
+        
+        if gameOver(winserType: self.playerType!) {
+            print("PLAYER WON!")
+        } else {
+            enemyMove()
         }
     }
     @IBAction func buttonC2Pressed(_ sender: Any) {
-        if TileIsFree(tileId: 8) {
+        if tileIsFree(tileId: 8) {
             buttonC2.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
+            tilesNumber += 1
+        }
+        
+        if gameOver(winserType: self.playerType!) {
+            print("PLAYER WON!")
+        } else {
+            enemyMove()
         }
     }
     
     @IBAction func buttonC3Pressed(_ sender: Any) {
-        if TileIsFree(tileId: 9) {
+        if tileIsFree(tileId: 9) {
             buttonC3.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
+            tilesNumber += 1
+        }
+        
+        if gameOver(winserType: self.playerType!) {
+            print("PLAYER WON!")
+        } else {
+            enemyMove()
         }
     }
     
