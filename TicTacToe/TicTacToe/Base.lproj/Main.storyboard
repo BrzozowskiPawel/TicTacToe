@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="I3s-t8-SaD">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -96,10 +97,10 @@
             </objects>
             <point key="canvasLocation" x="139" y="109"/>
         </scene>
-        <!--View Controller-->
+        <!--Game View Controller-->
         <scene sceneID="9FZ-rp-Jid">
             <objects>
-                <viewController id="I3s-t8-SaD" sceneMemberID="viewController">
+                <viewController id="I3s-t8-SaD" customClass="GameViewController" customModule="TicTacToe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BAM-tP-SFh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -125,68 +126,68 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1we-C2-rCD">
-                                <rect key="frame" x="45" y="433" width="324" height="324"/>
+                                <rect key="frame" x="42" y="427" width="330" height="330"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0Dq-94-bQf">
-                                        <rect key="frame" x="0.0" y="0.0" width="324" height="324"/>
+                                    <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillEqually" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="0Dq-94-bQf">
+                                        <rect key="frame" x="0.0" y="0.0" width="330" height="330"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="HaV-nj-BFW">
-                                                <rect key="frame" x="0.0" y="0.0" width="324" height="108"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="HaV-nj-BFW">
+                                                <rect key="frame" x="56.5" y="0.0" width="217" height="104.5"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TbT-XX-xFj">
-                                                        <rect key="frame" x="0.0" y="2" width="108" height="104"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zLM-n8-igL">
+                                                        <rect key="frame" x="0.0" y="37" width="67" height="31"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" image="X_SPACE"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T1m-gL-Qmh">
-                                                        <rect key="frame" x="108" y="2" width="108" height="104"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhS-n4-wR4">
+                                                        <rect key="frame" x="75" y="37" width="67" height="31"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" image="DEFAULT_SPACE"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RqL-WZ-nKb">
-                                                        <rect key="frame" x="216" y="2" width="108" height="104"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ymI-Me-2wM">
+                                                        <rect key="frame" x="150" y="37" width="67" height="31"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" image="O_SPACE"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                                     </button>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="J18-kl-F25">
-                                                <rect key="frame" x="0.0" y="108" width="324" height="108"/>
+                                                <rect key="frame" x="64.5" y="112.5" width="201" height="105"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NrU-yw-YJT">
-                                                        <rect key="frame" x="0.0" y="2" width="108" height="104"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67l-3R-TQd">
+                                                        <rect key="frame" x="0.0" y="37" width="67" height="31"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" image="X_SPACE"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eX8-sc-3g6">
-                                                        <rect key="frame" x="108" y="2" width="108" height="104"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="onR-88-99M">
+                                                        <rect key="frame" x="67" y="37" width="67" height="31"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" image="DEFAULT_SPACE"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HqT-lk-ydQ">
-                                                        <rect key="frame" x="216" y="2" width="108" height="104"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aJC-fd-KHp">
+                                                        <rect key="frame" x="134" y="37" width="67" height="31"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" image="O_SPACE"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                                     </button>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Fr3-7f-mbb">
-                                                <rect key="frame" x="0.0" y="216" width="324" height="108"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Fr3-7f-mbb">
+                                                <rect key="frame" x="56.5" y="225.5" width="217" height="104.5"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1W2-0z-pji">
-                                                        <rect key="frame" x="0.0" y="2" width="108" height="104"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbV-ue-GZ8">
+                                                        <rect key="frame" x="0.0" y="36.5" width="67" height="31"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" image="X_SPACE"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tac-9h-eSU">
-                                                        <rect key="frame" x="108" y="2" width="108" height="104"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fnc-cu-9dO">
+                                                        <rect key="frame" x="75" y="36.5" width="67" height="31"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" image="DEFAULT_SPACE"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adE-Ti-UfJ">
-                                                        <rect key="frame" x="216" y="2" width="108" height="104"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCD-LL-kxg">
+                                                        <rect key="frame" x="150" y="36.5" width="67" height="31"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" image="O_SPACE"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -199,8 +200,8 @@
                                     <constraint firstAttribute="trailing" secondItem="0Dq-94-bQf" secondAttribute="trailing" id="RHV-Ql-HcQ"/>
                                     <constraint firstItem="0Dq-94-bQf" firstAttribute="top" secondItem="1we-C2-rCD" secondAttribute="top" id="dAk-qS-QSa"/>
                                     <constraint firstAttribute="bottom" secondItem="0Dq-94-bQf" secondAttribute="bottom" id="lYx-YI-Uhc"/>
-                                    <constraint firstAttribute="height" constant="324" id="xFr-CV-pQa"/>
-                                    <constraint firstAttribute="width" constant="324" id="yz6-nA-0Fo"/>
+                                    <constraint firstAttribute="height" constant="330" id="xFr-CV-pQa"/>
+                                    <constraint firstAttribute="width" constant="330" id="yz6-nA-0Fo"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -219,6 +220,19 @@
                             <constraint firstItem="W8n-2z-pN4" firstAttribute="top" secondItem="BAM-tP-SFh" secondAttribute="topMargin" constant="149" id="x84-NF-2cf"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="buttonA1" destination="zLM-n8-igL" id="QyF-6H-fOa"/>
+                        <outlet property="buttonA2" destination="zhS-n4-wR4" id="afk-as-HNG"/>
+                        <outlet property="buttonA3" destination="ymI-Me-2wM" id="716-G3-8cL"/>
+                        <outlet property="buttonB1" destination="67l-3R-TQd" id="I6B-eg-dXY"/>
+                        <outlet property="buttonB2" destination="onR-88-99M" id="Q6j-uJ-DIm"/>
+                        <outlet property="buttonB3" destination="aJC-fd-KHp" id="YQ3-yS-cYM"/>
+                        <outlet property="buttonC1" destination="zbV-ue-GZ8" id="wJ6-wg-ZIN"/>
+                        <outlet property="buttonC2" destination="fnc-cu-9dO" id="diu-u1-uCV"/>
+                        <outlet property="buttonC3" destination="cCD-LL-kxg" id="0NO-H0-S8r"/>
+                        <outlet property="gameView" destination="1we-C2-rCD" id="cI0-Gk-EuP"/>
+                        <outlet property="timeLabel" destination="G9q-fe-dW4" id="RwQ-Ni-7E4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="swD-fV-8eG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -226,9 +240,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="DEFAULT_SPACE" width="90" height="90"/>
-        <image name="O_SPACE" width="90" height="90"/>
-        <image name="X_SPACE" width="90" height="90"/>
         <image name="circleImg" width="171" height="339"/>
         <image name="gradientBackground" width="1170" height="2532"/>
         <image name="xImg" width="266" height="337"/>
