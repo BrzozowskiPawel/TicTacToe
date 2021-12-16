@@ -21,7 +21,7 @@ class GameViewController: UIViewController {
     
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var gameView: UIView!
-    
+    @IBOutlet weak var turnLabel: UILabel!
     
     var playerType: String?
     var enemyType: String?
@@ -47,6 +47,9 @@ class GameViewController: UIViewController {
         
         // Set type for enemy
         setEnemyType()
+        
+        // Set up turn label to player (always is starting)
+        setTurnLabel(currentPlayer: self.playerType!)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,6 +60,10 @@ class GameViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    func setTurnLabel(currentPlayer: String) {
+        turnLabel.text = "Player \(currentPlayer)’s Turn"
     }
     
     func setEnemyType() {
@@ -116,6 +123,9 @@ class GameViewController: UIViewController {
     func enemyMove() {
         var stilChooseNumber = true
         if tilesNumber < 9 {
+            // Dispaly enemy type turn in turnLabel
+            setTurnLabel(currentPlayer: self.enemyType!)
+            
             while stilChooseNumber {
                 let randNum = Int.random(in: 1...9)
                 if occupiedTiles[randNum] == "" {
@@ -152,6 +162,8 @@ class GameViewController: UIViewController {
             }
         }
         print("number of \(tilesNumber), bool: \(stilChooseNumber)")
+        // Seting up a label for PLAYER turn
+        setTurnLabel(currentPlayer: self.playerType!)
 
     }
     

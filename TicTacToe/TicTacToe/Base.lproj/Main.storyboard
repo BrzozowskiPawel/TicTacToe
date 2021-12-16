@@ -262,6 +262,7 @@
                         <outlet property="buttonC3" destination="cCD-LL-kxg" id="0NO-H0-S8r"/>
                         <outlet property="gameView" destination="1we-C2-rCD" id="cI0-Gk-EuP"/>
                         <outlet property="timeLabel" destination="G9q-fe-dW4" id="RwQ-Ni-7E4"/>
+                        <outlet property="turnLabel" destination="W8n-2z-pN4" id="LDu-FJ-MxB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="swD-fV-8eG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
