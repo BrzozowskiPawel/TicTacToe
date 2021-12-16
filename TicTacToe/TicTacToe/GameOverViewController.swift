@@ -22,6 +22,10 @@ class GameOverViewController: UIViewController {
         // Set corner radius for gameView
         GameOverView.layer.cornerRadius = 15
 
+        // Defaulty user won, other casechange apperance
+        if !playerHasWon! {
+            userHasLost()
+        }
     }
 
     // Hide NavigationController
@@ -33,6 +37,13 @@ class GameOverViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    func userHasLost() {
+        mainLabel.text = "OH NOOOOOO"
+        secondLabel.text = "YOU HAVE LOST"
+        secondLabel.textColor = UIColor.red
+        labelImage.text = "😭"
     }
     
 }

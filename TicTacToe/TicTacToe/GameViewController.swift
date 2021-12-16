@@ -104,6 +104,7 @@ class GameViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
+        print("GameVC disapear")
     }
     
     func setTurnLabel(currentPlayer: String) {
@@ -176,7 +177,7 @@ class GameViewController: UIViewController {
         }
         
         var stilChooseNumber = true
-        if tilesNumber < 9 {
+        if tilesNumber < 9 && playerHasWon == nil{
             // Dispaly enemy type turn in turnLabel
             setTurnLabel(currentPlayer: self.enemyType!)
             
@@ -212,17 +213,21 @@ class GameViewController: UIViewController {
                     if gameOver(winserType: self.enemyType!) {
                         print("CPU WON!")
                         playerHasWon = false
+                        timer?.invalidate()
+                        goToGameOverVC()
                     }
                 }
             }
         }
-        print("number of \(tilesNumber), bool: \(stilChooseNumber)")
-        // Seting up a label for PLAYER turn
-        setTurnLabel(currentPlayer: self.playerType!)
-        currentMove = self.playerType!
-        setTimerForPlaerMove()
-        // Update the label. (-1 because after 0:00 wait 1 sec before enemy turn)
-        timeLabel.text = "0:0\(seconds - 1)"
+        if playerHasWon == nil {
+            print("number of \(tilesNumber), bool: \(stilChooseNumber)")
+            // Seting up a label for PLAYER turn
+            setTurnLabel(currentPlayer: self.playerType!)
+            currentMove = self.playerType!
+            setTimerForPlaerMove()
+            // Update the label. (-1 because after 0:00 wait 1 sec before enemy turn)
+            timeLabel.text = "0:0\(seconds - 1)"
+        }
     }
     
     func gameOver(winserType: String) -> Bool{
@@ -296,6 +301,7 @@ class GameViewController: UIViewController {
             print("PLAYER WON!")
             self.playerHasWon = true
             goToGameOverVC()
+            timer?.invalidate()
         } else {
             enemyMove()
         }
@@ -312,6 +318,7 @@ class GameViewController: UIViewController {
             print("PLAYER WON!")
             self.playerHasWon = true
             goToGameOverVC()
+            timer?.invalidate()
         } else {
             enemyMove()
         }
@@ -327,6 +334,7 @@ class GameViewController: UIViewController {
             print("PLAYER WON!")
             self.playerHasWon = true
             goToGameOverVC()
+            timer?.invalidate()
         } else {
             enemyMove()
         }
@@ -342,6 +350,7 @@ class GameViewController: UIViewController {
             print("PLAYER WON!")
             self.playerHasWon = true
             goToGameOverVC()
+            timer?.invalidate()
         } else {
             enemyMove()
         }
@@ -357,6 +366,7 @@ class GameViewController: UIViewController {
             print("PLAYER WON!")
             self.playerHasWon = true
             goToGameOverVC()
+            timer?.invalidate()
         } else {
             enemyMove()
         }
@@ -372,6 +382,7 @@ class GameViewController: UIViewController {
             print("PLAYER WON!")
             self.playerHasWon = true
             goToGameOverVC()
+            timer?.invalidate()
         } else {
             enemyMove()
         }
@@ -387,6 +398,7 @@ class GameViewController: UIViewController {
             print("PLAYER WON!")
             self.playerHasWon = true
             goToGameOverVC()
+            timer?.invalidate()
         } else {
             enemyMove()
         }
@@ -401,6 +413,7 @@ class GameViewController: UIViewController {
             print("PLAYER WON!")
             self.playerHasWon = true
             goToGameOverVC()
+            timer?.invalidate()
         } else {
             enemyMove()
         }
@@ -416,6 +429,7 @@ class GameViewController: UIViewController {
             print("PLAYER WON!")
             self.playerHasWon = true
             goToGameOverVC()
+            timer?.invalidate()
         } else {
             enemyMove()
         }
