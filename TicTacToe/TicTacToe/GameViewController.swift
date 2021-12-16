@@ -32,6 +32,8 @@ class GameViewController: UIViewController {
     var seconds:Int = 6
     
     var currentMove: String?
+    // Value being send to next VC
+    var playerHasWon: Bool?
     
     var occupiedTiles = [
         1: "",
@@ -93,6 +95,7 @@ class GameViewController: UIViewController {
         }
     }
     
+    // Hide NavigationController
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -208,6 +211,7 @@ class GameViewController: UIViewController {
                     tilesNumber += 1
                     if gameOver(winserType: self.enemyType!) {
                         print("CPU WON!")
+                        playerHasWon = false
                     }
                 }
             }
@@ -272,6 +276,16 @@ class GameViewController: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerStarted), userInfo: nil, repeats: true)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let gameOverVC = segue.destination as? GameOverViewController {
+            gameOverVC.playerHasWon = self.playerHasWon
+        }
+    }
+    
+    func goToGameOverVC() {
+        performSegue(withIdentifier: "GameOverSegue", sender: nil)
+    }
+    
     @IBAction func buttonA1Pressed(_ sender: Any) {
         if tileIsFree(tileId: 1) {
             buttonA1.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
@@ -280,6 +294,8 @@ class GameViewController: UIViewController {
         currentMove = enemyType!
         if gameOver(winserType: self.playerType!) {
             print("PLAYER WON!")
+            self.playerHasWon = true
+            goToGameOverVC()
         } else {
             enemyMove()
         }
@@ -294,6 +310,8 @@ class GameViewController: UIViewController {
         currentMove = enemyType!
         if gameOver(winserType: self.playerType!) {
             print("PLAYER WON!")
+            self.playerHasWon = true
+            goToGameOverVC()
         } else {
             enemyMove()
         }
@@ -307,6 +325,8 @@ class GameViewController: UIViewController {
         currentMove = enemyType!
         if gameOver(winserType: self.playerType!) {
             print("PLAYER WON!")
+            self.playerHasWon = true
+            goToGameOverVC()
         } else {
             enemyMove()
         }
@@ -320,6 +340,8 @@ class GameViewController: UIViewController {
         currentMove = enemyType!
         if gameOver(winserType: self.playerType!) {
             print("PLAYER WON!")
+            self.playerHasWon = true
+            goToGameOverVC()
         } else {
             enemyMove()
         }
@@ -333,6 +355,8 @@ class GameViewController: UIViewController {
         currentMove = enemyType!
         if gameOver(winserType: self.playerType!) {
             print("PLAYER WON!")
+            self.playerHasWon = true
+            goToGameOverVC()
         } else {
             enemyMove()
         }
@@ -346,6 +370,8 @@ class GameViewController: UIViewController {
         currentMove = enemyType!
         if gameOver(winserType: self.playerType!) {
             print("PLAYER WON!")
+            self.playerHasWon = true
+            goToGameOverVC()
         } else {
             enemyMove()
         }
@@ -359,6 +385,8 @@ class GameViewController: UIViewController {
         currentMove = enemyType!
         if gameOver(winserType: self.playerType!) {
             print("PLAYER WON!")
+            self.playerHasWon = true
+            goToGameOverVC()
         } else {
             enemyMove()
         }
@@ -371,6 +399,8 @@ class GameViewController: UIViewController {
         currentMove = enemyType!
         if gameOver(winserType: self.playerType!) {
             print("PLAYER WON!")
+            self.playerHasWon = true
+            goToGameOverVC()
         } else {
             enemyMove()
         }
@@ -384,6 +414,8 @@ class GameViewController: UIViewController {
         currentMove = enemyType!
         if gameOver(winserType: self.playerType!) {
             print("PLAYER WON!")
+            self.playerHasWon = true
+            goToGameOverVC()
         } else {
             enemyMove()
         }

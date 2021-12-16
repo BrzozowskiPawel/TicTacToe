@@ -263,11 +263,74 @@
                         <outlet property="gameView" destination="1we-C2-rCD" id="cI0-Gk-EuP"/>
                         <outlet property="timeLabel" destination="G9q-fe-dW4" id="RwQ-Ni-7E4"/>
                         <outlet property="turnLabel" destination="W8n-2z-pN4" id="LDu-FJ-MxB"/>
+                        <segue destination="d6Y-R2-o49" kind="presentation" identifier="GameOverSegue" id="jen-6G-RwR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="swD-fV-8eG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1995.6521739130437" y="107.8125"/>
+        </scene>
+        <!--Game Over View Controller-->
+        <scene sceneID="s1R-am-m72">
+            <objects>
+                <viewController id="d6Y-R2-o49" customClass="GameOverViewController" customModule="TicTacToe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zCv-Rc-0HG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wz5-lV-RmK">
+                                <rect key="frame" x="77" y="236" width="260" height="370"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CONGRATULATION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zy7-X0-sZF">
+                                        <rect key="frame" x="30.5" y="10" width="199" height="24.5"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🏆" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSf-g9-cTN">
+                                        <rect key="frame" x="54" y="101.5" width="152" height="167.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="140"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOU HAVE WON!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zvt-hw-Ag7">
+                                        <rect key="frame" x="44.5" y="44.5" width="171" height="24.5"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="20"/>
+                                        <color key="textColor" systemColor="systemGreenColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="260" id="10d-He-GS2"/>
+                                    <constraint firstItem="zy7-X0-sZF" firstAttribute="top" secondItem="wz5-lV-RmK" secondAttribute="top" constant="10" id="DCM-Z1-bOC"/>
+                                    <constraint firstItem="Zvt-hw-Ag7" firstAttribute="centerX" secondItem="wz5-lV-RmK" secondAttribute="centerX" id="Pze-LY-cja"/>
+                                    <constraint firstItem="zy7-X0-sZF" firstAttribute="centerX" secondItem="wz5-lV-RmK" secondAttribute="centerX" id="VDk-4G-RPv"/>
+                                    <constraint firstAttribute="height" constant="370" id="ajy-os-tw0"/>
+                                    <constraint firstItem="Zvt-hw-Ag7" firstAttribute="top" secondItem="zy7-X0-sZF" secondAttribute="bottom" constant="10" id="caX-O4-adP"/>
+                                    <constraint firstItem="iSf-g9-cTN" firstAttribute="centerY" secondItem="wz5-lV-RmK" secondAttribute="centerY" id="ejv-I6-2yH"/>
+                                    <constraint firstItem="iSf-g9-cTN" firstAttribute="centerX" secondItem="wz5-lV-RmK" secondAttribute="centerX" id="oTJ-n4-kjR"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="i1m-eP-dWu"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wz5-lV-RmK" firstAttribute="centerY" secondItem="zCv-Rc-0HG" secondAttribute="centerY" id="JKj-aX-VJy"/>
+                            <constraint firstItem="wz5-lV-RmK" firstAttribute="centerX" secondItem="zCv-Rc-0HG" secondAttribute="centerX" id="qGR-MT-J9a"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="kzY-6s-x3Y"/>
+                    <connections>
+                        <outlet property="GameOverView" destination="wz5-lV-RmK" id="jG3-2Z-QaZ"/>
+                        <outlet property="labelImage" destination="iSf-g9-cTN" id="I9p-vz-RNO"/>
+                        <outlet property="mainLabel" destination="zy7-X0-sZF" id="8wM-O4-BLh"/>
+                        <outlet property="secondLabel" destination="Zvt-hw-Ag7" id="kdm-Da-Vpo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iZ0-g8-UjY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2890" y="108"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4wM-zp-m40">
@@ -294,6 +357,9 @@
         <image name="xImg" width="266" height="337"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
