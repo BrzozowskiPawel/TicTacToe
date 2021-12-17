@@ -15,6 +15,8 @@ class GameOverViewController: UIViewController {
     @IBOutlet weak var GameOverView: UIView!
     
     var playerHasWon: Bool?
+    var popUpTimer: Timer?
+    var secondsToClosePopUp = 3
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,17 +28,18 @@ class GameOverViewController: UIViewController {
         if !playerHasWon! {
             userHasLost()
         }
+        
     }
-
-    // Hide NavigationController
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+    
+    @objc func popUpTimerStarted() {
+        // Decrement the counter
+        secondsToClosePopUp -= 1
+    
+        // Stop the timer if it reaches zero
+        if secondsToClosePopUp == 1 {
+            popUpTimer?.invalidate()
+            dismiss(animated: true, completion: nil)
+        }
     }
     
     func userHasLost() {
@@ -45,5 +48,7 @@ class GameOverViewController: UIViewController {
         secondLabel.textColor = UIColor.red
         labelImage.text = "😭"
     }
+    
+
     
 }

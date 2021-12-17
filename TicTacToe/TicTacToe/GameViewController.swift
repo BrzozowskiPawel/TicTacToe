@@ -28,6 +28,7 @@ class GameViewController: UIViewController {
     var tilesNumber = 0
     
     var timer: Timer?
+    
     // Add 1 second more becuase last second is to show that time is up!
     var seconds:Int = 6
     
@@ -99,6 +100,12 @@ class GameViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        print("APEAR")
+        if playerHasWon != nil {
+            print("DISMISS")
+            dismiss(animated: true, completion: nil)
+            navigationController?.setNavigationBarHidden(false, animated: animated)
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -106,6 +113,7 @@ class GameViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
         print("GameVC disapear")
     }
+    
     
     func setTurnLabel(currentPlayer: String) {
         turnLabel.text = "Player \(currentPlayer)’s Turn"
@@ -121,29 +129,8 @@ class GameViewController: UIViewController {
     }
     
     func configureScreen() {
-        // Setup the buttons FIRST ROW
-        buttonA1.setImage(UIImage(named: "DEFAULT_SPACE.png"), for: .normal)
-        buttonA1.setTitle("", for: .normal)
-        buttonA2.setImage(UIImage(named: "DEFAULT_SPACE.png"), for: .normal)
-        buttonA2.setTitle("", for: .normal)
-        buttonA3.setImage(UIImage(named: "DEFAULT_SPACE.png"), for: .normal)
-        buttonA3.setTitle("", for: .normal)
-
-        // Setup the buttons SECOND ROW
-        buttonB1.setImage(UIImage(named: "DEFAULT_SPACE.png"), for: .normal)
-        buttonB1.setTitle("", for: .normal)
-        buttonB2.setImage(UIImage(named: "DEFAULT_SPACE.png"), for: .normal)
-        buttonB2.setTitle("", for: .normal)
-        buttonB3.setImage(UIImage(named: "DEFAULT_SPACE.png"), for: .normal)
-        buttonB3.setTitle("", for: .normal)
-        
-        // Setup the buttons THIRD ROW
-        buttonC1.setImage(UIImage(named: "DEFAULT_SPACE.png"), for: .normal)
-        buttonC1.setTitle("", for: .normal)
-        buttonC2.setImage(UIImage(named: "DEFAULT_SPACE.png"), for: .normal)
-        buttonC2.setTitle("", for: .normal)
-        buttonC3.setImage(UIImage(named: "DEFAULT_SPACE.png"), for: .normal)
-        buttonC3.setTitle("", for: .normal)
+        // Buttons setup
+        setDefaultImagesForButtons()
         
         // Set corner radius for game
         timeLabel.layer.masksToBounds = true
@@ -215,6 +202,7 @@ class GameViewController: UIViewController {
                         playerHasWon = false
                         timer?.invalidate()
                         goToGameOverVC()
+                        
                     }
                 }
             }
@@ -435,5 +423,59 @@ class GameViewController: UIViewController {
         }
     }
     
+//    func resetGame() {
+//        setDefaultImagesForButtons()
+//        tilesNumber = 0
+//        
+//        seconds = 6
+//        
+//        playerHasWon = nil
+//        
+//        occupiedTiles = [
+//            1: "",
+//            2: "",
+//            3: "",
+//            4: "",
+//            5: "",
+//            6: "",
+//            7: "",
+//            8: "",
+//            9: "",
+//        ]
+//        
+//        currentMove = playerType!
+//        
+//        // Initialize timer
+//        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerStarted), userInfo: nil, repeats: true)
+//        
+//        // Update the label
+//        timeLabel.text = "0:0\(seconds - 1)"
+//    }
+    
+    func setDefaultImagesForButtons() {
+        // Setup the buttons FIRST ROW
+        buttonA1.setImage(UIImage(named: "DEFAULT_SPACE.png"), for: .normal)
+        buttonA1.setTitle("", for: .normal)
+        buttonA2.setImage(UIImage(named: "DEFAULT_SPACE.png"), for: .normal)
+        buttonA2.setTitle("", for: .normal)
+        buttonA3.setImage(UIImage(named: "DEFAULT_SPACE.png"), for: .normal)
+        buttonA3.setTitle("", for: .normal)
+
+        // Setup the buttons SECOND ROW
+        buttonB1.setImage(UIImage(named: "DEFAULT_SPACE.png"), for: .normal)
+        buttonB1.setTitle("", for: .normal)
+        buttonB2.setImage(UIImage(named: "DEFAULT_SPACE.png"), for: .normal)
+        buttonB2.setTitle("", for: .normal)
+        buttonB3.setImage(UIImage(named: "DEFAULT_SPACE.png"), for: .normal)
+        buttonB3.setTitle("", for: .normal)
+        
+        // Setup the buttons THIRD ROW
+        buttonC1.setImage(UIImage(named: "DEFAULT_SPACE.png"), for: .normal)
+        buttonC1.setTitle("", for: .normal)
+        buttonC2.setImage(UIImage(named: "DEFAULT_SPACE.png"), for: .normal)
+        buttonC2.setTitle("", for: .normal)
+        buttonC3.setImage(UIImage(named: "DEFAULT_SPACE.png"), for: .normal)
+        buttonC3.setTitle("", for: .normal)
+    }
     
 }
