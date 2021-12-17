@@ -25,7 +25,7 @@ class GameViewController: UIViewController {
     
     var playerType: String?
     var enemyType: String?
-    var tilesNumber = 0
+    var tilesPlaced = 0
     
     var timer: Timer?
     
@@ -35,6 +35,7 @@ class GameViewController: UIViewController {
     var currentMove: String?
     // Value being send to next VC
     var playerHasWon: Bool?
+    var draft: Bool?
     
     var occupiedTiles = [
         1: "",
@@ -164,7 +165,7 @@ class GameViewController: UIViewController {
         }
         
         var stilChooseNumber = true
-        if tilesNumber < 9 && playerHasWon == nil{
+        if tilesPlaced < 9 && playerHasWon == nil && draft == nil {
             // Dispaly enemy type turn in turnLabel
             setTurnLabel(currentPlayer: self.enemyType!)
             
@@ -196,7 +197,7 @@ class GameViewController: UIViewController {
                         print("Error! Wrong number")
                     }
                     stilChooseNumber = false
-                    tilesNumber += 1
+                    tilesPlaced += 1
                     if gameOver(winserType: self.enemyType!) {
                         print("CPU WON!")
                         playerHasWon = false
@@ -208,7 +209,7 @@ class GameViewController: UIViewController {
             }
         }
         if playerHasWon == nil {
-            print("number of \(tilesNumber), bool: \(stilChooseNumber)")
+            print("number of \(tilesPlaced), bool: \(stilChooseNumber)")
             // Seting up a label for PLAYER turn
             setTurnLabel(currentPlayer: self.playerType!)
             currentMove = self.playerType!
@@ -226,6 +227,11 @@ class GameViewController: UIViewController {
         } else if checkForWinInDiagonals(winerType: winserType) {
             return true
         } else {
+            if tilesPlaced == 9 {
+                self.draft = true
+                goToGameOverVC()
+                timer?.invalidate()
+            }
             return false
         }
     }
@@ -271,6 +277,7 @@ class GameViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let gameOverVC = segue.destination as? GameOverViewController {
+            gameOverVC.draft = self.draft
             gameOverVC.playerHasWon = self.playerHasWon
         }
     }
@@ -282,7 +289,7 @@ class GameViewController: UIViewController {
     @IBAction func buttonA1Pressed(_ sender: Any) {
         if tileIsFree(tileId: 1) {
             buttonA1.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
-            tilesNumber += 1
+            tilesPlaced += 1
         }
         currentMove = enemyType!
         if gameOver(winserType: self.playerType!) {
@@ -299,7 +306,7 @@ class GameViewController: UIViewController {
     @IBAction func buttonA2Pressed(_ sender: Any) {
         if tileIsFree(tileId: 2) {
             buttonA2.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
-            tilesNumber += 1
+            tilesPlaced += 1
         }
         currentMove = enemyType!
         if gameOver(winserType: self.playerType!) {
@@ -315,7 +322,7 @@ class GameViewController: UIViewController {
     @IBAction func buttonA3Pressed(_ sender: Any) {
         if tileIsFree(tileId: 3) {
             buttonA3.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
-            tilesNumber += 1
+            tilesPlaced += 1
         }
         currentMove = enemyType!
         if gameOver(winserType: self.playerType!) {
@@ -331,7 +338,7 @@ class GameViewController: UIViewController {
     @IBAction func buttonB1Pressed(_ sender: Any) {
         if tileIsFree(tileId: 4) {
             buttonB1.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
-            tilesNumber += 1
+            tilesPlaced += 1
         }
         currentMove = enemyType!
         if gameOver(winserType: self.playerType!) {
@@ -347,7 +354,7 @@ class GameViewController: UIViewController {
     @IBAction func buttonB2Pressed(_ sender: Any) {
         if tileIsFree(tileId: 5) {
             buttonB2.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
-            tilesNumber += 1
+            tilesPlaced += 1
         }
         currentMove = enemyType!
         if gameOver(winserType: self.playerType!) {
@@ -363,7 +370,7 @@ class GameViewController: UIViewController {
     @IBAction func buttonB3Pressed(_ sender: Any) {
         if tileIsFree(tileId: 6) {
             buttonB3.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
-            tilesNumber += 1
+            tilesPlaced += 1
         }
         currentMove = enemyType!
         if gameOver(winserType: self.playerType!) {
@@ -379,7 +386,7 @@ class GameViewController: UIViewController {
     @IBAction func buttonC1Pressed(_ sender: Any) {
         if tileIsFree(tileId: 7) {
             buttonC1.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
-            tilesNumber += 1
+            tilesPlaced += 1
         }
         currentMove = enemyType!
         if gameOver(winserType: self.playerType!) {
@@ -394,7 +401,7 @@ class GameViewController: UIViewController {
     @IBAction func buttonC2Pressed(_ sender: Any) {
         if tileIsFree(tileId: 8) {
             buttonC2.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
-            tilesNumber += 1
+            tilesPlaced += 1
         }
         currentMove = enemyType!
         if gameOver(winserType: self.playerType!) {
@@ -410,7 +417,7 @@ class GameViewController: UIViewController {
     @IBAction func buttonC3Pressed(_ sender: Any) {
         if tileIsFree(tileId: 9) {
             buttonC3.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
-            tilesNumber += 1
+            tilesPlaced += 1
         }
         currentMove = enemyType!
         if gameOver(winserType: self.playerType!) {
@@ -422,35 +429,6 @@ class GameViewController: UIViewController {
             enemyMove()
         }
     }
-    
-//    func resetGame() {
-//        setDefaultImagesForButtons()
-//        tilesNumber = 0
-//        
-//        seconds = 6
-//        
-//        playerHasWon = nil
-//        
-//        occupiedTiles = [
-//            1: "",
-//            2: "",
-//            3: "",
-//            4: "",
-//            5: "",
-//            6: "",
-//            7: "",
-//            8: "",
-//            9: "",
-//        ]
-//        
-//        currentMove = playerType!
-//        
-//        // Initialize timer
-//        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerStarted), userInfo: nil, repeats: true)
-//        
-//        // Update the label
-//        timeLabel.text = "0:0\(seconds - 1)"
-//    }
     
     func setDefaultImagesForButtons() {
         // Setup the buttons FIRST ROW

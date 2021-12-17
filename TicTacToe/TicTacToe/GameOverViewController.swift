@@ -15,6 +15,7 @@ class GameOverViewController: UIViewController {
     @IBOutlet weak var GameOverView: UIView!
     
     var playerHasWon: Bool?
+    var draft: Bool?
     var popUpTimer: Timer?
     var secondsToClosePopUp = 3
     
@@ -23,11 +24,20 @@ class GameOverViewController: UIViewController {
 
         // Set corner radius for gameView
         GameOverView.layer.cornerRadius = 15
-
-        // Defaulty user won, other casechange apperance
-        if !playerHasWon! {
-            userHasLost()
+        
+        // Make sure that there is not a draft (if it is, player is still the winer)
+        if draft != nil {
+            
+            // Display view as draft
+            itIsADraft()
+            
+        } else {
+            // Defaulty user won, other casechange apperance
+            if !playerHasWon!{
+                userHasLost()
+            }
         }
+
         
     }
     
@@ -49,6 +59,12 @@ class GameOverViewController: UIViewController {
         labelImage.text = "😭"
     }
     
+    func itIsADraft() {
+        mainLabel.text = "IT'S A DRAFT"
+        secondLabel.text = "NO WINNER THIS TIME"
+        secondLabel.textColor = UIColor.black
+        labelImage.text = "😳"
+    }
 
     
 }
