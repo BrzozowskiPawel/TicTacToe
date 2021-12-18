@@ -73,7 +73,7 @@ class GameViewController: UIViewController {
         timeLabel.text = "0:0\(seconds - 1)"
     }
     
-    // Hide NavigationController
+    // Hide/Show NavigationController related to state of game
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -82,6 +82,7 @@ class GameViewController: UIViewController {
         }
     }
 
+    // Hide/Show NavigationController related to state of game
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
@@ -97,14 +98,12 @@ class GameViewController: UIViewController {
         // Update the label. (-1 because after 0:00 wait 1 sec before enemy turn)
         timeLabel.text = "0:0\(seconds - 1)"
         
-        print("timer: \(seconds)")
         // Stop the timer if it reaches zero
         if seconds == 1 {
             
             timeLabel.textColor = UIColor.red
             timer?.invalidate()
             seconds = 6
-            print("END OF TIME!!!")
             if currentMove == playerType! {
                 currentMove = enemyType!
                 enemyMove()
@@ -115,11 +114,7 @@ class GameViewController: UIViewController {
         }
     }
     
-    
-    func setTurnLabel(currentPlayer: String) {
-        turnLabel.text = "Player \(currentPlayer)’s Turn"
-    }
-    
+    // Set different then player type for CPU
     func setEnemyType() {
         if self.playerType! == "X" {
             enemyType = "O"
@@ -129,20 +124,9 @@ class GameViewController: UIViewController {
         print("Set enemy type for: \(enemyType!)")
     }
     
-    func configureScreen() {
-        // Buttons setup
-        setDefaultImagesForButtons()
-        
-        // Set corner radius for game
-        timeLabel.layer.masksToBounds = true
-        timeLabel.layer.cornerRadius = 15
-        
-        // Set corner radius for gameView
-        gameView.layer.cornerRadius = 15
-    }
+    // MARK: - Game Logic
     
-    // MARK: - BUTTON PRESSED
-    
+    // Check if tile is free to place a tile here
     func tileIsFree(tileId: Int) -> Bool{
         if occupiedTiles[tileId] == "" {
             occupiedTiles[tileId] = self.playerType!
@@ -150,10 +134,8 @@ class GameViewController: UIViewController {
             // Stop timer
             timer?.invalidate()
             self.seconds = 6
-            print("Clicked on tile: \(tileId) timer should be reseted")
             return true
         } else {
-            print("Sorry already occupied by: \(occupiedTiles[tileId]!)")
             return false
         }
     }
@@ -199,7 +181,6 @@ class GameViewController: UIViewController {
                     stilChooseNumber = false
                     tilesPlaced += 1
                     if gameOver(winserType: self.enemyType!) {
-                        print("CPU WON!")
                         playerHasWon = false
                         timer?.invalidate()
                         goToGameOverVC()
@@ -209,11 +190,10 @@ class GameViewController: UIViewController {
             }
         }
         if playerHasWon == nil {
-            print("number of \(tilesPlaced), bool: \(stilChooseNumber)")
             // Seting up a label for PLAYER turn
             setTurnLabel(currentPlayer: self.playerType!)
             currentMove = self.playerType!
-            setTimerForPlaerMove()
+            setTimerForPlayerMove()
             // Update the label. (-1 because after 0:00 wait 1 sec before enemy turn)
             timeLabel.text = "0:0\(seconds - 1)"
         }
@@ -237,11 +217,12 @@ class GameViewController: UIViewController {
     }
     
     
-    func setTimerForPlaerMove() {
+    func setTimerForPlayerMove() {
         // Initialize timer
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerStarted), userInfo: nil, repeats: true)
     }
     
+    // MARK: - Segue and prepare functions
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let gameOverVC = segue.destination as? GameOverViewController {
             gameOverVC.draft = self.draft
@@ -253,11 +234,8 @@ class GameViewController: UIViewController {
         performSegue(withIdentifier: "GameOverSegue", sender: nil)
     }
     
-    @IBAction func buttonA1Pressed(_ sender: Any) {
-        if tileIsFree(tileId: 1) {
-            buttonA1.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
-            tilesPlaced += 1
-        }
+    // Redundant code after each time player placed tile
+    func playerEndMove() {
         currentMove = enemyType!
         if gameOver(winserType: self.playerType!) {
             print("PLAYER WON!")
@@ -267,6 +245,15 @@ class GameViewController: UIViewController {
         } else {
             enemyMove()
         }
+    }
+    // MARK: - BUTTON PRESSED
+    
+    @IBAction func buttonA1Pressed(_ sender: Any) {
+        if tileIsFree(tileId: 1) {
+            buttonA1.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
+            tilesPlaced += 1
+        }
+        playerEndMove()
         
     }
     
@@ -275,15 +262,7 @@ class GameViewController: UIViewController {
             buttonA2.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
             tilesPlaced += 1
         }
-        currentMove = enemyType!
-        if gameOver(winserType: self.playerType!) {
-            print("PLAYER WON!")
-            self.playerHasWon = true
-            goToGameOverVC()
-            timer?.invalidate()
-        } else {
-            enemyMove()
-        }
+        playerEndMove()
     }
     
     @IBAction func buttonA3Pressed(_ sender: Any) {
@@ -291,15 +270,7 @@ class GameViewController: UIViewController {
             buttonA3.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
             tilesPlaced += 1
         }
-        currentMove = enemyType!
-        if gameOver(winserType: self.playerType!) {
-            print("PLAYER WON!")
-            self.playerHasWon = true
-            goToGameOverVC()
-            timer?.invalidate()
-        } else {
-            enemyMove()
-        }
+        playerEndMove()
     }
     
     @IBAction func buttonB1Pressed(_ sender: Any) {
@@ -307,15 +278,7 @@ class GameViewController: UIViewController {
             buttonB1.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
             tilesPlaced += 1
         }
-        currentMove = enemyType!
-        if gameOver(winserType: self.playerType!) {
-            print("PLAYER WON!")
-            self.playerHasWon = true
-            goToGameOverVC()
-            timer?.invalidate()
-        } else {
-            enemyMove()
-        }
+        playerEndMove()
     }
     
     @IBAction func buttonB2Pressed(_ sender: Any) {
@@ -323,15 +286,7 @@ class GameViewController: UIViewController {
             buttonB2.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
             tilesPlaced += 1
         }
-        currentMove = enemyType!
-        if gameOver(winserType: self.playerType!) {
-            print("PLAYER WON!")
-            self.playerHasWon = true
-            goToGameOverVC()
-            timer?.invalidate()
-        } else {
-            enemyMove()
-        }
+        playerEndMove()
     }
     
     @IBAction func buttonB3Pressed(_ sender: Any) {
@@ -339,15 +294,7 @@ class GameViewController: UIViewController {
             buttonB3.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
             tilesPlaced += 1
         }
-        currentMove = enemyType!
-        if gameOver(winserType: self.playerType!) {
-            print("PLAYER WON!")
-            self.playerHasWon = true
-            goToGameOverVC()
-            timer?.invalidate()
-        } else {
-            enemyMove()
-        }
+        playerEndMove()
     }
     
     @IBAction func buttonC1Pressed(_ sender: Any) {
@@ -355,30 +302,14 @@ class GameViewController: UIViewController {
             buttonC1.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
             tilesPlaced += 1
         }
-        currentMove = enemyType!
-        if gameOver(winserType: self.playerType!) {
-            print("PLAYER WON!")
-            self.playerHasWon = true
-            goToGameOverVC()
-            timer?.invalidate()
-        } else {
-            enemyMove()
-        }
+        playerEndMove()
     }
     @IBAction func buttonC2Pressed(_ sender: Any) {
         if tileIsFree(tileId: 8) {
             buttonC2.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
             tilesPlaced += 1
         }
-        currentMove = enemyType!
-        if gameOver(winserType: self.playerType!) {
-            print("PLAYER WON!")
-            self.playerHasWon = true
-            goToGameOverVC()
-            timer?.invalidate()
-        } else {
-            enemyMove()
-        }
+        playerEndMove()
     }
     
     @IBAction func buttonC3Pressed(_ sender: Any) {
@@ -386,15 +317,25 @@ class GameViewController: UIViewController {
             buttonC3.setImage(UIImage(named: "\(self.playerType!)_SPACE.png"), for: .normal)
             tilesPlaced += 1
         }
-        currentMove = enemyType!
-        if gameOver(winserType: self.playerType!) {
-            print("PLAYER WON!")
-            self.playerHasWon = true
-            goToGameOverVC()
-            timer?.invalidate()
-        } else {
-            enemyMove()
-        }
+        playerEndMove()
+    }
+    
+    // MARK: - Screen UI config
+    
+    func configureScreen() {
+        // Buttons setup
+        setDefaultImagesForButtons()
+        
+        // Set corner radius for game
+        timeLabel.layer.masksToBounds = true
+        timeLabel.layer.cornerRadius = 15
+        
+        // Set corner radius for gameView
+        gameView.layer.cornerRadius = 15
+    }
+    
+    func setTurnLabel(currentPlayer: String) {
+        turnLabel.text = "Player \(currentPlayer)’s Turn"
     }
     
     func setDefaultImagesForButtons() {

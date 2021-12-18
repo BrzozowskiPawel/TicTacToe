@@ -42,13 +42,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func xButtonPressed(_ sender: UIButton) {
-        print("x button pressed")
         self.choosenType = "X"
         goToGameVC()
     }
     
     @IBAction func oButtonPressed(_ sender: UIButton) {
-        print("o button pressed")
         self.choosenType = "O"
         goToGameVC()
     }
