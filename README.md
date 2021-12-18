@@ -7,20 +7,20 @@ TicTacToe game made with [Figma](https://www.figma.com/community/file/9502889200
 
 ## Description
 
-This app was made from Figma design linked above to imitate app developemnt process. </br>
-Game contains total fo 3 screen's: 
-- choosing type 
-- game screen with place to put your tile
-- result screen where we can se if we won or no
+This app was made from the Figma design linked above to imitate the app development process. </br>
+The game contains total of 3 screen's:
 
-I have tried to code code this UI with applied few changes:
+choosing type
+game screen with a place to put your tile
+result screen where we can see if we won or no
+I have tried to code this UI with applied few changes
 
 <img src="readme_files/figma.png" alt="FIGMA_UI" width="1230"/> 
 
 
 ## Game
-As in real TicTacToe game user have to place his/her tile on the grid. </br>
-If user has 3 the same tiles in row/column/diagonal he/she win othercase if CPU does the same user looses. </br>
+As in a real TicTacToe game users have to place his/her tile on the grid. </br>
+If the user has 3 the same tiles in row/column/diagonal he/she win another case if CPU does the same user loses. </br>
 Here are presented all options:
 
 ### User wins
