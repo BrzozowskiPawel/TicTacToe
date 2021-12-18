@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		041441EE276A54B800386330 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041441ED276A54B800386330 /* GameViewController.swift */; };
-		041441F0276A5F8500386330 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041441EF276A5F8500386330 /* Tile.swift */; };
 		042326BB276B65A500A3BE70 /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042326BA276B65A500A3BE70 /* GameOverViewController.swift */; };
 		04AD09B32769347A00315521 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AD09B22769347A00315521 /* AppDelegate.swift */; };
 		04AD09B52769347A00315521 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AD09B42769347A00315521 /* SceneDelegate.swift */; };
@@ -22,7 +21,6 @@
 
 /* Begin PBXFileReference section */
 		041441ED276A54B800386330 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		041441EF276A5F8500386330 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		042326BA276B65A500A3BE70 /* GameOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
 		04AD09AF2769347A00315521 /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04AD09B22769347A00315521 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +45,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04557D86276DF13E00C5471A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		04557D87276DF14600C5471A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04557D89276DF20000C5471A /* VC */,
+				04AD09B82769347A00315521 /* Main.storyboard */,
+				04AD09BD2769347A00315521 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04557D88276DF14C00C5471A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		04557D89276DF20000C5471A /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				04AD09B62769347A00315521 /* ViewController.swift */,
+				041441ED276A54B800386330 /* GameViewController.swift */,
+				042326BA276B65A500A3BE70 /* GameOverViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
 		04AD09A62769347A00315521 = {
 			isa = PBXGroup;
 			children = (
@@ -68,15 +100,12 @@
 			children = (
 				04AD09B22769347A00315521 /* AppDelegate.swift */,
 				04AD09B42769347A00315521 /* SceneDelegate.swift */,
-				04AD09B62769347A00315521 /* ViewController.swift */,
-				04AD09B82769347A00315521 /* Main.storyboard */,
-				04AD09BB2769347A00315521 /* Assets.xcassets */,
-				04AD09BD2769347A00315521 /* LaunchScreen.storyboard */,
 				04AD09C02769347A00315521 /* Info.plist */,
+				04AD09BB2769347A00315521 /* Assets.xcassets */,
+				04557D86276DF13E00C5471A /* Model */,
+				04557D87276DF14600C5471A /* View */,
+				04557D88276DF14C00C5471A /* ViewModel */,
 				04AD09C627693ED300315521 /* fonts */,
-				041441ED276A54B800386330 /* GameViewController.swift */,
-				041441EF276A5F8500386330 /* Tile.swift */,
-				042326BA276B65A500A3BE70 /* GameOverViewController.swift */,
 			);
 			path = TicTacToe;
 			sourceTree = "<group>";
@@ -166,7 +195,6 @@
 				041441EE276A54B800386330 /* GameViewController.swift in Sources */,
 				04AD09B72769347A00315521 /* ViewController.swift in Sources */,
 				042326BB276B65A500A3BE70 /* GameOverViewController.swift in Sources */,
-				041441F0276A5F8500386330 /* Tile.swift in Sources */,
 				04AD09B32769347A00315521 /* AppDelegate.swift in Sources */,
 				04AD09B52769347A00315521 /* SceneDelegate.swift in Sources */,
 			);
