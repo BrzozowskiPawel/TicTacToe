@@ -9,6 +9,7 @@ import UIKit
 
 class GameViewController: UIViewController {
     
+    // IBotlets decralation
     @IBOutlet weak var buttonA1: UIButton!
     @IBOutlet weak var buttonA2: UIButton!
     @IBOutlet weak var buttonA3: UIButton!
@@ -18,26 +19,29 @@ class GameViewController: UIViewController {
     @IBOutlet weak var buttonC1: UIButton!
     @IBOutlet weak var buttonC2: UIButton!
     @IBOutlet weak var buttonC3: UIButton!
-    
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var gameView: UIView!
     @IBOutlet weak var turnLabel: UILabel!
     
+    // Player type: X or O
     var playerType: String?
+    // If player is ) then enemy is X and so one
     var enemyType: String?
-    var tilesPlaced = 0
-    
+    // Keep track how many X or O have been placed, make sure to not place more then 9 coz this is grid size.
+    var tilesPlaced:Int = 0
+    // Timer to inform user how much time he/she got to place his tile.
     var timer: Timer?
-    
     // Add 1 second more becuase last second is to show that time is up!
     var seconds:Int = 6
-    
+    //Keep track of who is currenly placing tile
     var currentMove: String?
     // Value being send to next VC
     var playerHasWon: Bool?
+    // Check if it's draft
     var draft: Bool?
     
-    var occupiedTiles = [
+    // Dictonary of tile's state
+    var occupiedTiles: [Int: String] = [
         1: "",
         2: "",
         3: "",
@@ -69,6 +73,20 @@ class GameViewController: UIViewController {
         timeLabel.text = "0:0\(seconds - 1)"
     }
     
+    // Hide NavigationController
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+        if playerHasWon != nil {
+            navigationController?.setNavigationBarHidden(false, animated: animated)
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
     @objc func timerStarted() {
         // Reset the label color
         timeLabel.textColor = UIColor.black
@@ -95,24 +113,6 @@ class GameViewController: UIViewController {
         if currentMove == enemyType! {
             timer?.invalidate()
         }
-    }
-    
-    // Hide NavigationController
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-        print("APEAR")
-        if playerHasWon != nil {
-            print("DISMISS")
-            dismiss(animated: true, completion: nil)
-            navigationController?.setNavigationBarHidden(false, animated: animated)
-        }
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
-        print("GameVC disapear")
     }
     
     
@@ -220,11 +220,11 @@ class GameViewController: UIViewController {
     }
     
     func gameOver(winserType: String) -> Bool{
-        if checkForWinInRows(winerType: winserType) {
+        if GameJudge.checkForWinInRows(winerType: winserType, occupiedTiles: occupiedTiles) {
             return true
-        } else if checkForWinInColumns(winerType: winserType) {
+        } else if GameJudge.checkForWinInColumns(winerType: winserType, occupiedTiles: occupiedTiles) {
             return true
-        } else if checkForWinInDiagonals(winerType: winserType) {
+        } else if GameJudge.checkForWinInDiagonals(winerType: winserType, occupiedTiles: occupiedTiles) {
             return true
         } else {
             if tilesPlaced == 9 {
@@ -236,39 +236,6 @@ class GameViewController: UIViewController {
         }
     }
     
-    func checkForWinInRows(winerType: String) -> Bool{
-        if occupiedTiles[1] == winerType && occupiedTiles[2] == winerType && occupiedTiles[3] == winerType {
-            return true
-        } else if occupiedTiles[4] == winerType && occupiedTiles[5] == winerType && occupiedTiles[6] == winerType {
-            return true
-        } else if occupiedTiles[7] == winerType && occupiedTiles[8] == winerType && occupiedTiles[9] == winerType {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    func checkForWinInColumns(winerType: String) -> Bool{
-        if occupiedTiles[1] == winerType && occupiedTiles[4] == winerType && occupiedTiles[7] == winerType {
-            return true
-        } else if occupiedTiles[2] == winerType && occupiedTiles[5] == winerType && occupiedTiles[8] == winerType {
-            return true
-        } else if occupiedTiles[3] == winerType && occupiedTiles[6] == winerType && occupiedTiles[9] == winerType {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    func checkForWinInDiagonals(winerType: String) -> Bool{
-        if occupiedTiles[1] == winerType && occupiedTiles[5] == winerType && occupiedTiles[9] == winerType {
-            return true
-        } else if occupiedTiles[3] == winerType && occupiedTiles[5] == winerType && occupiedTiles[7] == winerType {
-            return true
-        } else {
-            return false
-        }
-    }
     
     func setTimerForPlaerMove() {
         // Initialize timer
